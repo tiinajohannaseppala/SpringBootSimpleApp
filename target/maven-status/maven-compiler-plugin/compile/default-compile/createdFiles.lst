@@ -1,0 +1,12 @@
+app\laboat\domain\UserRepository.class
+app\laboat\LaboatApplication.class
+app\laboat\web\BoatController.class
+app\laboat\domain\Boat.class
+app\laboat\domain\BoatRepository.class
+app\laboat\domain\SignUpForm.class
+app\laboat\service\UserDetailServiceImpl.class
+app\laboat\web\UserController.class
+app\laboat\domain\Type.class
+app\laboat\domain\TypeRepository.class
+app\laboat\domain\User.class
+app\laboat\WebSecurityConfig.class

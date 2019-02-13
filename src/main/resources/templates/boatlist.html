@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <script src="/webjars/jquery/1.9.1/jquery.min.js"></script>    
+	<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/> 
+
+    <title>LaBoat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+</head>
+
+<body>
+	<div class="col-md-4">
+		<p th:inline="text">Logged: <b>[[${#httpServletRequest.remoteUser}]]</b> 
+		<!--  
+		
+		NÄMÄ EI TOIMI, EIKÄ DELETE TOIMI
+		<p th:inline="text">Role: <b>[[${#httpServletRequest.isUserInRole("USER")}]]</b></p>
+			<div class="col-md-4">
+		 Logged: <span sec:authentication="${User.username}">nimi</span>
+		 Role: <span sec:authentication="principal.authorities"></span>
+		 </div>
+		
+		-->
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign out" class="btn btn-danger"/>
+		</form>
+	</div>
+
+	<div class="col-md-4">
+		<h1>Boatlist</h1>		
+	</div>
+		
+    <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Model</th>
+		    <th>Year</th>
+		    <th>Type</th>
+		 	<th>Price</th>
+		 	<th>Location</th>
+		    <th>Length</th>
+		    <th>Width</th>
+		    <th></th>
+		</tr>  
+    	<tr th:each = "boat : ${boats}">
+    		<td th:text="${boat.name}"></td>
+    		<td th:text="${boat.model}"></td>
+    		<td th:text="${boat.year}"></td>
+    		<td th:text="${boat.type.typeName}"></td>
+    		<td th:text="${boat.price}"></td>
+    		<td th:text="${boat.location}"></td>
+    		<td th:text="${boat.length}"></td>
+    		<td th:text="${boat.width}"></td>
+    		<!-- <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/deleteboat/{bID}(bID=${boat.bID})}" class="btn btn-danger">Delete</a></td> -->
+			<!-- <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteboat/{bID}(bID=${boat.bID})}" class="btn btn-danger">Delete</a></td> -->
+			<td><a th:href="@{/deleteboat/{bID}(bID=${boat.bID})}" class="btn btn-danger">Delete</a></td>
+    	</tr>
+     </table>
+     <br>
+	 <a href="/addboat" class="btn btn-danger">Add new boat</a> 
+</body>
+</html>
